@@ -20,7 +20,7 @@ are compared.
 
 ![J=0.1, N=1000](./graphs/J_1.png)
 
-with even a 10% chance of jump, `between` is still better.
+With 10% jumps, the better algorithm becomes bisecting.
 
 ![J=0.05, N=1000](./graphs/J_05.png)
 
