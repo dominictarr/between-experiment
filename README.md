@@ -29,19 +29,32 @@ after the chance of jump gets lower, `bisecting-between` becomes clearly more ef
 
 ![J=0.01, N=1000](./graphs/J_01.png)
 
+## comparing the inflection point
+
+experiment to find the performance of between vs bisect as a function of J.
+from J=0.5 to 0.01 perform 1000 random inserts. run each trial 20 times,
+and calculate stdev.
+
+![J=(0.01-0.5) for bisect and between](./graphs/compare.png)
+
+This shows the mean performance for between cross bisect at about 
+7.5% (used % here, due to limitations of graph generating library)
+
+between is significantly more efficient to the right of that point,
+but curves upwards dramatically when J get lower.
+
 
 ## future work
 
-when J=0.1 running the test does not always produce the same winner.
-Luck may play a role early in the setup, depending if there are a lot
-of appends or not early in the experiment.
+study the uncertainty in the inflection point by showing bounds in the graph
+(value+-stdev) and see where that overlaps.
 
 Maybe rerun the experiments with deterministic randoness so that
 the algorithms can be compared across the same set of edits.
 
-run each model a bunch of times and graph avg + standard deviation
-
 ## License
 
 MIT
+
+
 
