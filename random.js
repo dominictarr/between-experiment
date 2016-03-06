@@ -26,6 +26,8 @@ var test = module.exports = function (N, J, between, each) {
 var between =
   opts.bisecting ? require('bisecting-between')() : require('between')
 
+
+if(!module.parent) {
 console.log('N, avg')
 
 test(opts.N, opts.J, between, function (a, length) {
@@ -33,4 +35,4 @@ test(opts.N, opts.J, between, function (a, length) {
     console.log([a.length, length/a.length].join(', '))
 })
 
-
+}
