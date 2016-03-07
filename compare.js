@@ -4,7 +4,8 @@ var random = require('./random')
 
 var between = require('between')
 var bisect = require('bisecting-between')()
-
+var numstring = require('lexiographic-between/numstring')
+var lex = require('lexiographic-between')
 // from 0.5 to 0.05
 
 var Stats = require('statistics')
@@ -20,12 +21,14 @@ function run(r, n, j, between) {
 
 var alg = {between: between, bisect: bisect}
 
-console.log('J, between.avg, between.stdev, bisect.avg, bisect.stdev')
-for(var j = 0.5; j >= 0.01; j -= 0.01) {
+console.log('J, between, bisect, numstring, lexiographic')
+for(var j = 50; j > 0; j --) {
   var a = [j]
-  var r = run(20, 1000, j, between)
-  var r2 = run(20, 1000, j, bisect)
-  console.log([j*100, r.mean, r.stdev, r2.mean, r2.stdev].join(', '))
+  var r = run(20, 1000, j/100, between)
+  var r2 = run(20, 1000, j/100, bisect)
+  var r3 = run(20, 1000, j/100, numstring)
+  var r4 = run(20, 1000, j/100, lex)
+  console.log([j, r.mean, r2.mean, r3.mean, r4.mean].join(', '))
 }
 
 

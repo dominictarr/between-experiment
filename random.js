@@ -11,9 +11,9 @@ var test = module.exports = function (N, J, between, each) {
       i = ~~(Math.random()*(a.length-1))
 
     try {
-    last = between(a[i], a[i+1])
+      last = between(a[i], a[i+1])
     } catch (err) {
-
+      console.error(a)
       throw err
     }
     length += last.length
@@ -24,15 +24,21 @@ var test = module.exports = function (N, J, between, each) {
 }
 
 var between =
-  opts.bisecting ? require('bisecting-between')() : require('between')
+    opts.bisecting ? require('bisecting-between')()
+  : opts.numbers   ? require('lexiographic-between/numstring')
+  : opts.lex       ? require('lexiographic-between')
+  :                  require('between')
 
 
 if(!module.parent) {
-console.log('N, avg')
+  console.log('N, avg')
 
-test(opts.N, opts.J, between, function (a, length) {
-  if(0 == (a.length % 10))
-    console.log([a.length, length/a.length].join(', '))
-})
+  var output =
+  test(opts.N, opts.J, between, function (a, length) {
+    if(0 == (a.length % 10))
+      console.log([a.length, length/a.length].join(', '))
+  })
+
+  if(opts.output) console.log(output)
 
 }
