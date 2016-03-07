@@ -10,6 +10,7 @@
   "dependencies": {
     "between": "^0.1.3",
     "bisecting-between": "0.0.3",
+    "lexiographic-between": "0.0.0",
     "minimist": "^1.2.0"
   },
   "devDependencies": {
