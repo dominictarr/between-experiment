@@ -1,4 +1,6 @@
 
+rm data/*
+
 node random -J $1 -N 1000 --bisecting > data/bisecting
 node random -J $1 -N 1000 > data/between
 node random -J $1 -N 1000 --lex > data/lexiographic
